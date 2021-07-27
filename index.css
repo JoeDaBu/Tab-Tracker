@@ -1,0 +1,151 @@
+body {
+    margin: 0;
+    padding: 1px;
+    font-family: Arial, Helvetica, sans-serif;
+    min-width: 400px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #5f9341;
+    margin-bottom: 4px;
+}
+
+body ::placeholder {
+    color: #cecece;
+}
+
+button {
+    background: #5f9341;
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid #5f9341;
+    font-weight: bold;
+}
+
+#input-btn {
+    transition: all 200ms ease-in; /*all properties change in 200 ms*/
+    will-change: transform;
+
+}
+
+#input-btn:hover {
+    transform: rotate(360deg); /*hover transorms by rotating 360degrees*/
+}
+
+#delete-btn {
+    background: white;
+    color: #5f9341;
+    width: 150px;
+}
+
+ul {
+    margin-top: 20px;
+    list-style: none;
+    padding-left: 0;
+}
+
+li {
+    margin-top: 5px;
+    display: inline-block;
+    margin-left: 0;
+}
+
+a {
+    color: #ffffff;
+    overflow-y: visible;
+
+    word-wrap: break-word;
+}
+
+.draggable {
+    margin: 10px 0;
+    border: #000000 1px solid;
+    height: 40px;
+    width: 100%;
+    line-height: 3.2; /*height of the text*/
+    cursor: move;
+    user-select: all; /*specifies the user can select/highlight the url text*/
+    position: relative;
+}
+
+/*positions:
+A positioned element is an element whose computed position value is either 
+relative, absolute, fixed, or sticky. (In other words, it's anything except static.)
+A relatively positioned element is an element whose computed position value is relative. 
+The top and bottom properties specify the vertical offset from its normal position; 
+the left and right properties specify the horizontal offset. 
+
+An absolutely positioned element is an element whose computed position value is absolute or fixed. 
+The top, right, bottom, and left properties specify offsets from the edges of the element's 
+containing block. (The containing block is the ancestor relative to which the element is positioned.)
+If the element has margins, they are added to the offset. 
+The element establishes a new block formatting context (BFC) for its contents.
+
+A stickily positioned element is an element whose computed position value is sticky.
+It's treated as relatively positioned until its containing block crosses a specified threshold
+(such as setting top to value other than auto) within its flow root 
+(or the container it scrolls within), at which point it is treated as "stuck"
+until meeting the opposite edge of its containing block.
+https: //developer.mozilla.org/en-US/docs/Web/CSS/position
+*/
+
+.test-div::after {
+    margin: 0;
+    content: 'drag';
+    transform: scale(0.1);
+    background-color:#50ac1b;
+    padding-right: 10px;
+    right: 0;
+    position: absolute;
+    top: 0px;
+    cursor: pointer;
+    transition: all 1s 1s;
+    transition-timing-function: cubic-bezier(0.48, 0.72, 0.62, 1.5);
+    /* transform: translateX(120%); */
+    font-weight: bold;
+    opacity: 0;
+    height: inherit;
+}
+
+.test-div:hover::after {
+    opacity: 1;
+    transform: translate(0);
+}
+
+.over {
+    transform: scale(1.1, 1.1);
+}
+
+.single-delete2 {
+    margin-right: 0;
+}
+
+.test {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.delete {
+    position: absolute;
+    background-color: red;
+    right: 0px;
+    height: inherit;
+    border: 1px solid rgb(3, 3, 3);
+    width: 17%;
+}
+
+.test-div {
+    will-change: transform;
+    width: 80%;
+    color: white;
+    background-color: #50ac1b;
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow-x: hidden;
+    height: 40px;
+    display: inline-block;
+}
