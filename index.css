@@ -65,9 +65,9 @@ a {
     border: #000000 1px solid;
     height: 40px;
     width: 100%;
-    line-height: 3.2; /*height of the text*/
+    line-height: 3.5; /*height of the text*/
     cursor: move;
-    user-select: all; /*specifies the user can select/highlight the url text*/
+    user-select: none; /*specifies the user can select/highlight the url text*/
     position: relative;
 }
 
@@ -98,7 +98,7 @@ https: //developer.mozilla.org/en-US/docs/Web/CSS/position
     transform: scale(0.1);
     background-color:#50ac1b;
     padding-right: 10px;
-    right: 0;
+    right: 0px;
     position: absolute;
     top: 0px;
     cursor: pointer;
@@ -135,7 +135,7 @@ https: //developer.mozilla.org/en-US/docs/Web/CSS/position
     right: 0px;
     height: inherit;
     border: 1px solid rgb(3, 3, 3);
-    width: 17%;
+    width: 20%;
 }
 
 .test-div {
