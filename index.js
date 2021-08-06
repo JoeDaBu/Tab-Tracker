@@ -81,27 +81,26 @@ function render(leads) {
     ulEl.innerHTML = listItems
     for(let i = 0; i < leads.length; i++) {
         if (ulEl.children[i].nodeName.toLowerCase() === 'li') {
-            addEventsDragAndDrop(ulEl.children[i])
             ulEl.children[i].children[1].addEventListener('click', () => {
+                console.log('working')
                 myLeads = myLeads.filter((lead) => lead !== ulEl.children[i].children[0].innerText)
                 ulEl.children[i].remove()
                 localStorage.clear()
                 localStorage.setItem("myLeads", JSON.stringify(myLeads))
         })
+            addEventsDragAndDrop(ulEl.children[i])
         }
     }
 }
 
-// function deleteLi(button) {
-//     console.log(button.parentNode)
-//     button.addEventListener('click', () => {
-//         myLeads = myLeads.filter((lead) => lead !== this.parentNode.children[0].children[0].innerText)
-//         this.parentNode.remove()
-//         localStorage.clear()
-//         localStorage.setItem("myLeads", JSON.stringify(myLeads))
-//     })
-    
-// }
+const deleteLi = (button) => {
+    button.children[1].addEventListener('click', () => {
+                    myLeads = myLeads.filter((lead) => lead !== button.children[0].innerText)
+                    button.remove()
+                    localStorage.clear()
+                    localStorage.setItem("myLeads", JSON.stringify(myLeads))
+            })
+}
 
 deleteBtn.addEventListener("dblclick", function() {
     localStorage.clear()
@@ -119,12 +118,20 @@ inputBtn.addEventListener("click", function() {
     }
 })
 
+document.addEventListener('keyup', (event) => {
+    if(event.key === 'Enter') {
+        event.preventDefault()
+        inputBtn.click()
+    }
+})
+
 function dragStart(e) {
     setDragging(e)
     this.style.opacity = '0.4';
     dragSrcEl = this;
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData('text/html', this.innerHTML);
+    console.log(this.innerHTML)
 };
  
 function dragEnter(e) {
@@ -153,8 +160,24 @@ function dragDrop(e) {
     localStorage.clear()
     localStorage.setItem('myLeads', JSON.stringify(myLeads))
     if (dragSrcEl != this) {
-    dragSrcEl.innerHTML = this.innerHTML;
-    this.innerHTML = e.dataTransfer.getData('text/html');
+        console.log('dragDrop')
+        dragSrcEl.innerHTML = this.innerHTML;
+        console.log(dragSrcEl.innerHTML)
+        this.innerHTML = e.dataTransfer.getData('text/html');
+        console.log(this.innerHTML)
+        console.log(this.children[1])
+        deleteLi(this)
+        // this.children[1].addEventListener('click', () => {
+        //         console.log('working')
+        //         myLeads = myLeads.filter((lead) => lead !== this.children[0].innerText)
+        //         this.remove()
+        //         localStorage.clear()
+        //         localStorage.setItem("myLeads", JSON.stringify(myLeads))
+        // })
+        console.log(ulEl.children[myLeads.indexOf(draggedOver)])
+        let addDeleteTo = ulEl.children[myLeads.indexOf(draggedOver)]
+        deleteLi(addDeleteTo)
+
     }
     return false;
 }
